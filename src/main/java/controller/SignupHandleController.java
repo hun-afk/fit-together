@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,25 +24,31 @@ public class SignupHandleController extends HttpServlet {
 		int birth = Integer.parseInt(request.getParameter("birth"));
 		String gender = request.getParameter("gender");
 		String[] interests = request.getParameterValues("interest");
+		if (interests == null) {
+			interests = new String[0];
+		}
 
+		User one = new User(id, password, name, gender, birth, email, String.join(",", interests));
+		
 		UserDao userDao = new UserDao();
 		boolean result = false;
+
 		try {
+
 			User exist = userDao.findById(id);
+
 			if (exist == null) {
-				User one = new User(id, password, name, gender, birth, email, String.join(",", interests));
 				result = userDao.save(one);
 			}
+				if (result) {
+					request.getSession().setAttribute("authUser", one);
+					response.sendRedirect(request.getContextPath() + "/index");
+				} else {
+					response.sendRedirect(request.getContextPath() + "/signup?error");
+				}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
-		if(result) {
-			response.sendRedirect(request.getContextPath()+"/index");
-		}else {
-			response.sendRedirect(request.getContextPath()+"/signup?error");
-		}
-		
 
 	}
 
