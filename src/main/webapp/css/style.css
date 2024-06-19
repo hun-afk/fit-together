@@ -12,6 +12,16 @@ a {
 	text-decoration: none;
 }
 
+button:hover {
+	background-color: #ddd;
+	cursor: pointer;
+}
+
+button:active {
+	background-color: #ccc;
+	cursor: pointer;
+}
+
 /* 영역 사이즈 클래스 */
 .container {
 	width: 1140px;
@@ -187,4 +197,9 @@ a {
 
 .my-5 {
 	margin: 20px auto;
+}
+
+.item:hover {
+	background-color: #eee;
+	
 }

@@ -19,12 +19,7 @@
 </head>
 <body>
 	<div class="container px-1">
-		<div>
-			<h1 class="text-center">핏투게더</h1>
-		</div>
+		
 	</div>
-	<form action="${pageContext.servletContext.contextPath}/view/Logout">
-			<button>로그아웃</button>
-	</form>
 </body>
 </html>

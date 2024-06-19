@@ -20,11 +20,20 @@
 <body>
 	<div class="container px-1">
 		<div>
-			<h1 class="text-center">핏투게더</h1>
+			로그온 메뉴바 들어갈 자리
 		</div>
+		<h2>새 행사 등록</h2>
+		<p>
+			등록할 행사에 필요한 체육시설 종류
+		</p>
+		<form action="${pageContext.servletContext.contextPath}/events/new">
+			<select name="type">
+				<c:forEach var="one" items="${types}">
+					<option>${one} </option>
+				</c:forEach>
+			</select>
+			<button type="submit">선택</button>
+		</form>
 	</div>
-	<form action="${pageContext.servletContext.contextPath}/view/Logout">
-			<button>로그아웃</button>
-	</form>
 </body>
 </html>
